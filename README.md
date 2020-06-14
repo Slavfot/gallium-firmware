@@ -59,7 +59,7 @@ telnet localhost 4444
 ```
 At this point it should look like this:
 <p align="center">
-<img src="img/flash-windows-1.JPG" alt="flashing on windows" width="600"/>
+<img src="img/flash-windows-1.JPG" alt="flashing-on-windows-1" width="600"/>
 </p>
 
 From the factory, these chips need to be erased:
@@ -77,7 +77,7 @@ flash write_image /hexfiles/precompiled-basic-receiver.hex
 
 At this point it is flashed and it should look like this:
 <p align="center">
-<img src="img/flash-windows-2.JPG" alt="flashing on windows" width="600"/>
+<img src="img/flash-windows-2.JPG" alt="flashing-on-windows-2" width="600"/>
 </p>
 
 11. End openOCD sessionen with ctrl+C in the first CMD window.
