@@ -58,6 +58,7 @@ Connect to the OpenOCD session:
 telnet localhost 4444
 ```
 At this point it should look like this:
+
 <p align="center">
 <img src="img/flash-windows-1.JPG" alt="flashing-on-windows-1" width="600"/>
 </p>
@@ -70,12 +71,13 @@ nrf51 mass_erase
 ```
 Write files:
 ```
-flash write_image /file/path/to/hexfile/precompiled-basic-receiver.hex
+flash write_image /filepath/to/hexfile/precompiled-basic-receiver.hex
 ```
 Example for the pathfile if the .hex file is located in C:/hexfiles
 flash write_image /hexfiles/precompiled-basic-receiver.hex
 
 At this point it is flashed and it should look like this:
+
 <p align="center">
 <img src="img/flash-windows-2.JPG" alt="flashing-on-windows-2" width="600"/>
 </p>
