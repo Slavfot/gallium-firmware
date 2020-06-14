@@ -57,11 +57,13 @@ Connect to the OpenOCD session:
 ```
 telnet localhost 4444
 ```
-At this point it should look like this:
+Should give you an output ending in:
 
-<p align="center">
-<img src="img/flash-windows-1.jpg" alt="flashing-on-windows-1" width="600"/>
-</p>
+```
+Info : nrf51.cpu: hardware has 4 breakpoints, 2 watchpoints
+```
+Otherwise you likely have a loose or wrong wire.
+s
 
 From the factory, these chips need to be erased:
 ```
@@ -76,7 +78,13 @@ flash write_image /filepath/to/hexfile/precompiled-basic-receiver.hex
 Example for the pathfile if the .hex file is located in C:/hexfiles
 flash write_image /hexfiles/precompiled-basic-receiver.hex
 
-At this point it is flashed and it should look like this:
+This is how it should look when you connect with telnet:
+
+<p align="center">
+<img src="img/flash-windows-1.jpg" alt="flashing-on-windows-1" width="600"/>
+</p>
+
+The whole process should look like this:
 
 <p align="center">
 <img src="img/flash-windows-2.jpg" alt="flashing-on-windows-2" width="600"/>
