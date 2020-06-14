@@ -71,7 +71,7 @@ reset halt
 
 nrf51 mass_erase
 ```
-Write files for keyboard or receiver:
+Write file to bt-module:
 ```
 flash write_image /filepath/to/hexfile/precompiled-basic-receiver.hex
 ```
@@ -83,8 +83,9 @@ or
 ```
 flash write_image /filepath/to/hexfile/precompiled-basic-right.hex
 ```
-Example for the pathfile if the .hex file is located in C:/hexfiles
-flash write_image /hexfiles/precompiled-basic-receiver.hex
+(Example for the pathfile if the .hex file is located in C:/hexfiles :
+
+flash write_image /hexfiles/precompiled-basic-receiver.hex )
 
 This is how it should look when you connect with telnet:
 
