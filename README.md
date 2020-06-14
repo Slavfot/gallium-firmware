@@ -8,7 +8,7 @@ For additional information about the Gallium keyboard visit:
 
 # Flashing firmware with Windows
 
-## Setup the environment:
+## Setup the environment
 
 1. Activate Telnet Client in windows:
 
@@ -19,8 +19,9 @@ For additional information about the Gallium keyboard visit:
 - Click OK.
 
 2. Download pre-compiled openOCD
-https://freddiechopin.info/en/download/category/4-openocd
-Unzip anywhere. But for ease of use in cmd i put it in C:\OpenOCD
+https://freddiechopin.info/en/download/category/4-openocd <br>
+Unzip anywhere. 
+But for ease of use in cmd i put it in C:\OpenOCD
 
 3. Make sure drivers for st-link v2 are installed.
 
@@ -30,8 +31,10 @@ Unzip anywhere. But for ease of use in cmd i put it in C:\OpenOCD
 
 5. Launch CMD.
 
-6. With terminal commands position the CMD in \openOCD\bin
-
+6. With terminal commands position the CMD in 
+```
+\openOCD\bin
+```
 First make sure you are in the right drive.
 If you need to change drive then type the drive letter only likes this "d:", after that you can navigate in that drive.
 commands to navigate with:
@@ -46,7 +49,8 @@ Tips: Press the tab button to automaticaly complete the directorys name while ty
 openocd -s C:\OpenOCD\scripts\ -f interface/stlink-v2.cfg -f target/nrf51.cfg
 ```
 
-This line is written as if OpenOCD is located at C:\. Change accordingly to where you have it located.
+This line is written as if OpenOCD is located at C:\ <br>
+Change accordingly to where you have it located.
 
 8. Launch another CMD window.
 
@@ -83,7 +87,7 @@ or
 ```
 flash write_image /filepath/to/hexfile/precompiled-basic-right.hex
 ```
-(Example for the pathfile if the .hex file is located in C:/hexfiles :
+(Example for the file path if the .hex file is located in C:/hexfiles :
 
 flash write_image /hexfiles/precompiled-basic-receiver.hex )
 
