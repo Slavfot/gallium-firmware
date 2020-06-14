@@ -71,9 +71,17 @@ reset halt
 
 nrf51 mass_erase
 ```
-Write files:
+Write files for keyboard or receiver:
 ```
 flash write_image /filepath/to/hexfile/precompiled-basic-receiver.hex
+```
+For keyboard halfs flash with either of these files:
+```
+flash write_image /filepath/to/hexfile/precompiled-basic-left.hex
+```
+or
+```
+flash write_image /filepath/to/hexfile/precompiled-basic-right.hex
 ```
 Example for the pathfile if the .hex file is located in C:/hexfiles
 flash write_image /hexfiles/precompiled-basic-receiver.hex
