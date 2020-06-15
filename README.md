@@ -10,7 +10,7 @@ For additional information about the Gallium keyboard visit:
 
 ## Setup the environment
 
-1. Activate Telnet Client in windows:
+###1. Activate Telnet Client in windows:
 
 - Open the Control Panel - with View By: Category.
 - Click on Programs.
@@ -18,32 +18,34 @@ For additional information about the Gallium keyboard visit:
 - Click on the checkbox next to Telnet client.
 - Click OK.
 
-2. Download pre-compiled openOCD
+###2. Download pre-compiled openOCD
 https://freddiechopin.info/en/download/category/4-openocd <br>
 Unzip anywhere. 
 But for ease of use in CMC i put it in C:\OpenOCD
 
 ## Flash with CMD
 
-4. Connect st-link v2 to programming pins and plug in to USB.
+###4. Connect st-link v2 to programming pins and plug in to USB.
 
-5. Launch CMD.
+###5. Launch CMD.
 
-6. With terminal commands position the CMD in 
+###6. With terminal commands position the CMD in 
 ```
 \openOCD\bin
 ```
- - First make sure you are in the right drive.
+First make sure you are in the right drive.
 If you need to change drive then type the drive letter only likes this "d:" <br>
 after that you can navigate in that drive.
-commands to navigate with:
-cd (change directory)
-cd .. (go back one directory)
-dir (show all the directorys in the folder you are located in)
+
+Commands to navigate with:
+
+- cd (change directory)
+- cd .. (go back one directory)
+- dir (show all the directorys in the folder you are located in)
 
 Tips: Press the tab button to automaticaly complete the directorys name while typing cd command.
 
-7. Launch an openocd session with this command:
+###7. Launch an openocd session with this command:
 ```
 openocd -s C:\OpenOCD\scripts\ -f interface/stlink-v2.cfg -f target/nrf51.cfg
 ```
@@ -51,11 +53,11 @@ openocd -s C:\OpenOCD\scripts\ -f interface/stlink-v2.cfg -f target/nrf51.cfg
 This line is written as if OpenOCD is located at C:\ <br>
 Change accordingly to where you have it located.
 
-8. Launch another CMD window.
+###8. Launch another CMD window.
 
-9. cd to the location where the hex is located.
+###9. cd to the location where the hex is located.
 
-10. Run these commands in the new window, wait for each command to finish until you run the next command.
+###10. Run these commands in the new window, wait for each command to finish until you run the next command.
 Connect to the OpenOCD session:
 ```
 telnet localhost 4444
@@ -102,7 +104,7 @@ The whole process should look like this:
 <img src="img/flash-windows-2.jpg" alt="flashing-on-windows-2" width="600"/>
 </p>
 
-11. End openOCD sessionen with ctrl+C in the first CMD window.
+###11. End openOCD sessionen with ctrl+C in the first CMD window.
 
 # Firmware Flashing on linux:
 
