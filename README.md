@@ -1,5 +1,5 @@
 # Gallium Wireless Keyboard Firmware
-Firmware for Nordic MCUs used in the Gallium wireless Keyboard, contains precompiled .hex files, as well as sources buildable with the Nordic SDK
+Firmware for Nordic MCUs used in the Gallium wireless Keyboard, contains precompiled .hex files, as well as sources buildable with the Nordic SDK <br>
 This firmware was derived from [Mattdibis' Redox-w](https://github.com/mattdibi/redox-w-firmware), [Reversebias' Mitosis](https://github.com/reversebias/mitosis) and [Durburz's Interphase](https://github.com/Durburz/interphase-firmware/) firmware.
 
 ## Gallium's documentation page
@@ -21,13 +21,11 @@ For additional information about the Gallium keyboard visit:
 2. Download pre-compiled openOCD
 https://freddiechopin.info/en/download/category/4-openocd <br>
 Unzip anywhere. 
-But for ease of use in cmd i put it in C:\OpenOCD
-
-3. Make sure drivers for st-link v2 are installed.
+But for ease of use in CMC i put it in C:\OpenOCD
 
 ## Flash with CMD
 
-4. Connect st-link v2 to programming pins
+4. Connect st-link v2 to programming pins and plug in to USB.
 
 5. Launch CMD.
 
@@ -35,8 +33,9 @@ But for ease of use in cmd i put it in C:\OpenOCD
 ```
 \openOCD\bin
 ```
-First make sure you are in the right drive.
-If you need to change drive then type the drive letter only likes this "d:", after that you can navigate in that drive.
+ - First make sure you are in the right drive.
+If you need to change drive then type the drive letter only likes this "d:" <br>
+after that you can navigate in that drive.
 commands to navigate with:
 cd (change directory)
 cd .. (go back one directory)
