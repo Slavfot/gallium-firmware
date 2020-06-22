@@ -37,14 +37,14 @@ Firmware written and tested with version gcc-arm-none-eabi-9-2019-q4-major-win32
 
 ## Edit Makefile.windows
 
-In the nRF5_SDK_11 folder that you unziped earlier you need to edit the makefile.windows to match your path way and version to GNU Arm Embedded toolchain.
+In the nRF5_SDK_11 folder that you unziped earlier you need to edit the makefile.windows to match your pathway and version to GNU Arm Embedded toolchain.
 
 It is located in nRF5_SDK_11\components\toolchain\gcc
 
-Open Makefile.windows and edit these lines to match your path way and version of GNU Tools Arm Embedded:
+Open Makefile.windows and edit these lines to match your pathway and version of GNU Tools Arm Embedded:
 
 ```
-GNU_INSTALL_ROOT := C:\path\way\to\gnu\GNU Tools Arm Embedded\9 2019-q4-major
+GNU_INSTALL_ROOT := C:\pathway\to\gnu\GNU Tools Arm Embedded\9 2019-q4-major
 GNU_VERSION := 9
 ```
 
