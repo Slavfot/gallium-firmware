@@ -6,107 +6,68 @@ This firmware was derived from [Mattdibis' Redox-w](https://github.com/mattdibi/
 For additional information about the Gallium keyboard visit:
 - [Gallium's Github page](https://github.com/slavfot/gallium-keyboard)
 
-# Flashing firmware with Windows
+## Instructions on how to flash the firmware to the MCU is found at 
+[Gallium's Github page](https://github.com/slavfot/gallium-keyboard)
 
-## Setup the environment
+# Firmware Compiling on Windows
 
-##### 1. Activate Telnet Client in windows:
+## Install dependencies
 
-- Open the Control Panel - with View By: Category.
-- Click on Programs.
-- Click on Turn Windows features on or off.
-- Click on the checkbox next to Telnet client.
-- Click OK.
+[MSYS2](https://www.msys2.org/) - it contains the GNU gcc, wich is the compiler.
+Download and install Msys2 and follow every installation step on the site.
+We will use the included mingw64 terminal to make the files.
 
-##### 2. Download pre-compiled openOCD
-https://freddiechopin.info/en/download/category/4-openocd <br>
-Unzip anywhere. 
-But for ease of use in CMC i put it in C:\OpenOCD
+## Download Nordic SDK
 
-#### Flash with CMD
+Nordic does not allow redistribution of their SDK or components, so download and extract from their site:
 
-##### 4. Connect st-link v2 to programming pins and plug in to USB.
+https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v11.x.x/nRF5_SDK_11.0.0_89a8197.zip
 
-##### 5. Launch CMD.
+Unzip at any location. This is the folder that you are going to work from when building the firmware.
 
-##### 6. With terminal commands position the CMD in 
-```
-\openOCD\bin
-```
-First make sure you are in the right drive.
-If you need to change drive then type the drive letter only likes this "d:" <br>
-after that you can navigate in that drive.
+Firmware written and tested with version 11
 
-Commands to navigate with:
+## Download and install GNU Arm Embedded Toolchain
 
-- cd (change directory)
-- cd .. (go back one directory)
-- dir (show all the directorys in the folder you are located in)
+Download and install GNU Arm Embedded Toolchain
 
-Tips: Press the tab button to automaticaly complete the directorys name while typing cd command.
+https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
 
-##### 7. Launch an openocd session with this command:
-```
-openocd -s C:\OpenOCD\scripts\ -f interface/stlink-v2.cfg -f target/nrf51.cfg
-```
+Firmware written and tested with version gcc-arm-none-eabi-9-2019-q4-major-win32-sha2
 
-This line is written as if OpenOCD is located at C:\ <br>
-Change accordingly to where you have it located.
+## Edit Makefile.windows
 
-##### 8. Launch another CMD window.
+In the nRF5_SDK_11 folder that you unziped earlier you need to edit the makefile.windows to match your path way and version to GNU Arm Embedded toolchain.
 
-##### 9. cd to the location where the hex is located.
+It is located in nRF5_SDK_11\components\toolchain\gcc
 
-##### 10. Run these commands in the new window, wait for each command to finish until you run the next command.
-Connect to the OpenOCD session:
-```
-telnet localhost 4444
-```
-Should give you an output ending in:
+Open Makefile.windows and edit these lines to match your path way and version of GNU Tools Arm Embedded:
 
 ```
-Info : nrf51.cpu: hardware has 4 breakpoints, 2 watchpoints
+GNU_INSTALL_ROOT := C:\path\way\to\gnu\GNU Tools Arm Embedded\9 2019-q4-major
+GNU_VERSION := 9
 ```
-Otherwise you likely have a loose or wrong wire.
-s
 
-From the factory, these chips need to be erased:
+## Make Commands
+
+clone gallium-firmware repository inside nRF5_SKD_11/
+
+Launch mingw64 and cd to gallium-firmware and run the make command to compile.
+
 ```
-reset halt
-
-nrf51 mass_erase
+make -C redox-w-receiver-basic/custom/armgcc
+make -C redox-w-keyboard-basic/custom/armgcc keyboard_side=left
+make -C redox-w-keyboard-basic/custom/armgcc keyboard_side=right 
 ```
-Write file to bt-module:
-```
-flash write_image /filepath/to/hexfile/precompiled-basic-receiver.hex
-```
-For keyboard halfs flash with either of these files:
-```
-flash write_image /filepath/to/hexfile/precompiled-basic-left.hex
-```
-or
-```
-flash write_image /filepath/to/hexfile/precompiled-basic-right.hex
-```
-(Example for the file path if the .hex file is located in C:/hexfiles :
 
-flash write_image /hexfiles/precompiled-basic-receiver.hex )
+The keyboard left and right make command writes the files to the same folder and rewrites the files current in that folder.
+Make sure to make a copy of the .hex file before compiling the .hex for the other side of the keyboard.
 
-This is how it should look when you connect with telnet:
+Keyboard files builds to gallium-firmware\gallium-keyboard-basic\custom\armgcc\_build
 
-<p align="center">
-<img src="img/flash-windows-1.jpg" alt="flashing-on-windows-1" width="600"/>
-</p>
+Receiver files builds to gallium-firmware\gallium-receiver-basic\custom\armgcc\_build
 
-The whole process should look like this:
-
-<p align="center">
-<img src="img/flash-windows-2.jpg" alt="flashing-on-windows-2" width="600"/>
-</p>
-
-##### 11. End openOCD sessionen with ctrl+C in the first CMD window.
-
-# Firmware Flashing on linux:
+# Firmware Compiling on Linux
 
 ## Install dependencies
 
@@ -150,54 +111,14 @@ Inside nRF5_SDK_11/
 git clone https://github.com/mattdibi/redox-w-firmware
 ```
 
-## Install udev rules
+Now you are ready to build firmware with the Nordic SDK.
 
-```
-sudo cp redox-w-firmware/49-stlinkv2.rules /etc/udev/rules.d/
-```
-Plug in, or replug in the programmer after this.
-
-## OpenOCD server
-The programming header on the side of the keyboard:
-
-<p align="center">
-<img src="img/programming-headers.JPG" alt="gallium-programming-headers" width="600"/>
-</p>
-
-It's best to remove the battery during long sessions of debugging, as charging non-rechargeable lithium batteries isn't recommended.
-
-Launch a debugging session with:
-
-```
-openocd -s /usr/local/Cellar/open-ocd/0.8.0/share/openocd/scripts/ -f interface/stlink-v2.cfg -f target/nrf51_stlink.tcl
-```
-Should give you an output ending in:
-
-```
-Info : nrf51.cpu: hardware has 4 breakpoints, 2 watchpoints
-```
-Otherwise you likely have a loose or wrong wire.
-
-
-## Manual programming
-From the factory, these chips need to be erased:
-
-```
-echo reset halt | telnet localhost 4444
-echo nrf51 mass_erase | telnet localhost 4444
-```
-From there, the precompiled binaries can be loaded:
-
-```
-echo reset halt | telnet localhost 4444
-echo flash write_image `readlink -f precompiled-basic-left.hex` | telnet localhost 4444
-echo reset | telnet localhost 4444
-```
+make -C gallium-receiver-basic/custom/armgcc
+make -C gallium-keyboard-basic/custom/armgcc keyboard_side=left
+make -C gallium-keyboard-basic/custom/armgcc keyboard_side=right
 
 ## Automatic make and programming scripts
 To use the automatic build scripts:
-* keyboard-left: `./redox-w-keyboard-basic/program_left.sh`
-* keyboard-right: `./redox-w-keyboard-basic/program_right.sh`
-* receiver: `./redox-w-receiver-basic/program.sh`
-
-An openocd session should be running in another terminal, as this script sends commands to it.
+* keyboard-left: `./gallium-keyboard-basic/program_left.sh`
+* keyboard-right: `./gallium-keyboard-basic/program_right.sh`
+* receiver: `./gallium-receiver-basic/program.sh`
