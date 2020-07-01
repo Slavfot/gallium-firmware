@@ -6,8 +6,8 @@ This firmware was derived from [Mattdibis' Redox-w](https://github.com/mattdibi/
 For additional information about the Gallium keyboard visit:
 - [Gallium's Github page](https://github.com/slavfot/gallium-keyboard)
 
-## Instructions on how to flash the firmware to the MCU is found at 
-[Gallium's Github page](https://github.com/slavfot/gallium-keyboard)
+## Instructions on how to flash the firmware to the MCU is found at:
+- [Gallium's Github page](https://github.com/slavfot/gallium-keyboard)
 
 # Firmware Compiling on Windows
 
